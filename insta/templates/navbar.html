@@ -1,0 +1,68 @@
+<div class="w3-top">
+    <div class="w3-bar w3-card w3-theme-l5" id="myNavbar">
+        <a class="w3-bar-item w3-button  w3-hover-black w3-hide-medium w3-hide-large w3-right"
+           href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <i class="fa fa-bars"></i></a>
+        <a href="{% url 'welcome'%}" class="w3-bar-item w3-button w3-hover-red w3-large"><i
+                class="fa fa-camera"></i></a>
+        <div class="w3-dropdown-hover w3-mobile ">
+            <button class="w3-button"> Filter by a Location <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card">
+                {%if all_locations%}
+                <form role="filter" class="" action="{%url 'locations'%}">
+                    <div class="w3-bar">
+                        {%for location in all_locations%}
+                        <input type="submit" name="location" class="w3-bar-item w3-button w3-hover-red w3-mobile"
+                               value="{{location.location}}"/>
+                        {%endfor%}
+                    </div>
+                    {%endif%}
+                </form>
+
+            </div>
+        </div>
+        <form role="search" class="w3-right w3-hide-small" action="">
+            <div class="w3-bar">
+                <input type="text" name="category"
+                       class="w3-bar-item w3-padding-bottom w3-border-bottom w3-border-large"
+                       placeholder="Search a category..." style="background:none;">
+                <button <div class="w3-top">
+    <div class="w3-bar w3-card w3-theme-l5" id="myNavbar">
+        <a class="w3-bar-item w3-button  w3-hover-black w3-hide-medium w3-hide-large w3-right"
+           href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <i class="fa fa-bars"></i></a>
+        <a href="{% url 'welcome'%}" class="w3-bar-item w3-button w3-hover-red w3-large"><i
+                class="fa fa-camera"></i></a>
+        <div class="w3-dropdown-hover w3-mobile ">
+            <button class="w3-button"> Filter by a Location <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card">
+                {%if all_locations%}
+                <form role="filter" class="" action="{%url 'locations'%}">
+                    <div class="w3-bar">
+                        {%for location in all_locations%}
+                        <input type="submit" name="location" class="w3-bar-item w3-button w3-hover-red w3-mobile"
+                               value="{{location.location}}"/>
+                        {%endfor%}
+                    </div>
+                    {%endif%}
+                </form>
+
+            </div>
+        </div>
+        <form role="search" class="w3-right w3-hide-small" action="{% url 'search_results' %}">
+            <div class="w3-bar">
+                <input type="text" name="category"
+                       class="w3-bar-item w3-padding-bottom w3-border-bottom w3-border-large"
+                       placeholder="Search a category..." style="background:none;">
+                <button class="w3-button w3-bar-item w3-hover-red w3-large" type="submit"><i class="fa fa-search"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+class="w3-button w3-bar-item w3-hover-red w3-large" type="submit"><i class="fa fa-search"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
