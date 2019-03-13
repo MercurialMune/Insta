@@ -36,5 +36,3 @@ def upload_form(request):
     else:
         form = UploadForm()
     return render(request, 'post.html', {'uploadform':form})
-
-

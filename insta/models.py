@@ -30,9 +30,9 @@ class Profile(models.Model):
         self.delete()
 
 class Image(models.Model):
-    name = models.CharField(max_length=30)
-    profile = models.ForeignKey(Profile)
+    description = models.CharField(max_length=30)
     post_date = models.DateTimeField(auto_now_add=True)
+    uploaded_by = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     likes = models.CharField(max_length=30)
     comments = models.TextField()
     pic = models.ImageField(upload_to='uploads/')
