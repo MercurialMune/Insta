@@ -26,3 +26,7 @@ class Image(models.Model):
     def update_caption(self):
         self.delete()
 
+class Users(models.Model):
+    name = models.CharField(max_length=30)
+    email = models.EmailField()
+
