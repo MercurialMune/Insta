@@ -1,10 +1,33 @@
 from django.db import models
+from django.conf import settings
+from django.dispatch import receiver
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from tinymce.models import HTMLField
+
+
+def post_save_user_model(sender,instance,created,*args,**kwargs):
+   if created:
+       try:
+           Profile.objects.create(user = instance)
+       except:
+           pass
+post_save.connect(post_save_user_model,sender=settings.AUTH_USER_MODEL)
 
 
 class Profile(models.Model):
     bio = models.TextField()
     pic = models.ImageField(upload_to='profiles/')
+    user = models.OneToOneField(User,blank=True, on_delete=models.CASCADE, related_name="profile")
 
+    def __str__(self):
+        return str(self.user)
+
+    def save_profile(self):
+        self.save()
+
+    def delete_profile(self):
+        self.delete()
 
 class Image(models.Model):
     name = models.CharField(max_length=30)
@@ -26,7 +49,7 @@ class Image(models.Model):
     def update_caption(self):
         self.delete()
 
-class Users(models.Model):
-    name = models.CharField(max_length=30)
-    email = models.EmailField()
-
+    @classmethod
+    def get_image_by_id(id):
+        img = Image.objects.get(id)
+        return img

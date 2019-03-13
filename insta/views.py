@@ -1,38 +1,40 @@
-from django.shortcuts import render, HttpResponse, Http404,HttpResponseRedirect
-from .models import Image, Profile, Users
-from. forms import RegistrationForm
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, Http404,HttpResponseRedirect
+from .models import Image, Profile
+from. forms import UploadForm
 from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
 
 
-def welcome(request):
-    return render(request, 'welcome.html')
-
-
-def gallery(request):
-    all_locations = Profile.objects.all()
-    images = Image.objects.all()
-    return render(request, 'categories/all-images.html', {"all_locations": all_locations, "images": images})
-
-
-def user(request):
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['your_name']
-            email = form.cleaned_data['email']
-            recipient = Users(name=name, email=email)
-            recipient.save()
-            send_welcome_email(name, email)
-            print(recipient)
-            HttpResponseRedirect('user')
-    else:
-        form = RegistrationForm()
-    return render(request, 'another.html', {'regform':form})
-
-
 @login_required(login_url='/accounts/login/')
-def gallery(request):
-    all_locations = Profile.objects.all()
+def welcome(request):
+    current_user = request.user
     images = Image.objects.all()
-    return render(request, 'categories/all-images.html', {"all_locations": all_locations, "images": images})
+    profile = Profile.objects.all()
+
+    return render(request, 'welcome.html', locals())
+
+
+@login_required(login_url='/accounts/login')
+def userspace(request):
+    current_user = request.user
+    images = Image.objects.all()
+    profile = Profile.objects.all()
+
+    return render(request, 'profile.html', locals())
+
+
+def upload_form(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = UploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.owner = current_user
+            image.save()
+            return redirect('welcome')
+    else:
+        form = UploadForm()
+    return render(request, 'post.html', {'uploadform':form})
+
+
