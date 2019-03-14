@@ -14,7 +14,7 @@ class ProfileEditForm(forms.ModelForm):
       model = Profile
       fields = ['pic','bio']
       widgets = {
-         'bio': forms.Textarea(attrs={'placeholder': 'Enter the bio...'})
+         'bio': forms.Textarea(attrs={'placeholder': 'Enter the bio..'})
       }
 
 
