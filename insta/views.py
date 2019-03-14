@@ -19,7 +19,7 @@ def userspace(request):
     current_user = request.user
     images = Image.objects.all()
     profile = Profile.objects.all()
-    return render(request, 'profile.html', locals())
+    return render(request, 'welcome.html', locals())
 
 @login_required(login_url='/accounts/login')
 def upload_form(request):
