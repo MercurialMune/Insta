@@ -34,8 +34,28 @@ class ImageTest(TestCase):
         self.assertTrue(len(photos) > 0)
 
     def tearDown(self):
-        Profile.objects.all().delete()
         Image.objects.all().delete()
+
+
+class ProfileTest(TestCase):
+    def setUp(self):
+        self.prof = Profile(bio='love this!', pic='lol.jpg')
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.prof, Profile))
+
+    def test_save_method(self):
+        self.prof.save_profile()
+        profile = Profile.objects.all()
+        self.assertTrue(len(profile) > 0)
+
+    def test_delete_profile(self):
+        self.prof.save_profile()
+        profile = Profile.objects.all().delete()
+        self.assertTrue(len(profile) < 0)
+
+    def tearDown(self):
+        Profile.objects.all().delete()
 
 
 
