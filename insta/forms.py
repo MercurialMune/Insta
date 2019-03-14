@@ -16,9 +16,4 @@ class ProfileEditForm(forms.ModelForm):
 
 
 
-class UserEditForm(forms.ModelForm):
-   first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
-   last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
-   class Meta:
-      model = User
-      fields = ['first_name','last_name']
+
