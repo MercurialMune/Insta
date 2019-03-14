@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from .models import Image, Profile
 from. forms import UploadForm, ProfileEditForm, UserEditForm
-from .email import send_welcome_email
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
