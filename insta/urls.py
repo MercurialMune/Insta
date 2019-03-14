@@ -7,7 +7,6 @@ from django.conf import settings
 
 urlpatterns=[
     url('^$',views.welcome,name = 'welcome'),
-    url(r'^userspace/', views.userspace, name='userspace'),
     url(r'^post/', views.upload_form, name='post'),
     url(r'^profupdate/', views.update_profile_form, name='profupdate'),
 ]
